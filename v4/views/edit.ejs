@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Edit Profile</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <!-- Add any additional stylesheets or scripts if needed -->
+</head>
+
+<body>
+    <div class="container mx-auto mt-10">
+        <h1 class="text-3xl font-semibold mb-5">Edit Profile</h1>
+        <form action="/edit" method="post">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                <input type="text" id="name" name="name" value="<%= user.name %>"
+                    class="border rounded w-full py-2 px-3" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>"
+                    class="border rounded w-full py-2 px-3" required>
+            </div>
+            <div class="mb-4">
+                <label for="mobile" class="block text-gray-700 text-sm font-bold mb-2">Mobile:</label>
+                <input type="tel" id="mobile" name="mobile" value="<%= user.mobile %>"
+                    class="border rounded w-full py-2 px-3" required>
+            </div>
+            <div class="mb-4">
+                <label for="dateOfBirth" class="block text-gray-700 text-sm font-bold mb-2">Date of Birth:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth"
+                    value="<%= user.dateOfBirth.toISOString().split('T')[0] %>" class="border rounded w-full py-2 px-3"
+                    required>
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block text-gray-700 text-sm font-bold mb-2">City:</label>
+                <input type="text" id="city" name="city" value="<%= user.city %>"
+                    class="border rounded w-full py-2 px-3" required>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Save Changes</button>
+        </form>
+    </div>
+</body>
+
+</html>

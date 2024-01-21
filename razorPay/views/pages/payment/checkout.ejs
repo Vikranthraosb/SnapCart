@@ -1,0 +1,113 @@
+<div class="row d-flex justify-content-center">
+	<div class="col-sm-10 col-md-8 col-lg-5">
+		<div class="card">
+			<h5 class="card-header">Confirm Order</h5>
+
+			<div class="card-body">
+				<p class="card-text">Thank you for taking up this decision.</p>
+
+				<dl class="row mt-2">
+					<dt class="col-sm-3">Order ID</dt>
+					<dd class="col-sm-9" id="orderId"><%- paymentDetail.orderId %>  </dd>
+			
+					<dt class="col-sm-3">Currency</dt>
+					<dd class="col-sm-9"><%- paymentDetail.currency %>  </dd>
+										
+					<dt class="col-sm-3">Amount</dt>
+					<dd class="col-sm-9"><%- paymentDetail.amount %> Rs. </dd>
+				</dl>
+
+				<button type="submit" class="btn btn-primary" onclick="checkout(event)">Checkout</button>
+			</div>
+		</div>
+		<form id="paymentVerifyForm" action="/payment/verify" method="POST">
+			<input name="razorpay_payment_id" type="hidden" id="razorpay_payment_id" />
+			<input name="razorpay_order_id" type="hidden" id="razorpay_order_id"/>
+			<input name="razorpay_signature" type="hidden" id="razorpay_signature"/>
+		</form>
+	</div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	router.post('/order', function (req, res, next) {
+    // Extract the selected amount from the clicked button
+    const selectedAmount = req.body.amount;
+
+    // Validate if the selectedAmount is valid (you can add more validation as needed)
+    if (![10, 50, 100].includes(parseInt(selectedAmount))) {
+        return res.render('pages/error', {
+            title: 'Invalid Amount',
+            status: 400,
+            message: 'Invalid amount selected.'
+        });
+    }
+
+    params = {
+        amount: selectedAmount * 100,
+        currency: "INR",
+        receipt: nanoid(),
+        payment_capture: "1"
+    }
+
+    razorPayInstance.orders.create(params)
+        .then(async (response) => {
+            const razorpayKeyId = process.env.RAZORPAY_KEY_ID;
+            // Save orderId and other payment details
+            const paymentDetail = new PaymentDetail({
+                orderId: response.id,
+                receiptId: response.receipt,
+                amount: response.amount / 100,
+                currency: response.currency,
+                createdAt: response.created_at,
+                status: response.status
+            });
+
+            try {
+                // Render Order Confirmation page if saved successfully
+                await paymentDetail.save();
+                res.render('pages/payment/checkout', {
+                    title: "Confirm Order",
+                    razorpayKeyId: razorpayKeyId,
+                    paymentDetail: paymentDetail
+                });
+            } catch (err) {
+                // Throw err if failed to save
+                if (err) throw err;
+            }
+        }).catch((err) => {
+            // Throw err if failed to create order
+            if (err) throw err;
+        });
+});
+
+	function checkout(event) {
+		const razorpayKeyId = '<%- razorpayKeyId %>'
+		const orderId = '<%- JSON.stringify(paymentDetail.orderId) %>'
+		const options = {
+			"key": razorpayKeyId,
+			"currency": "INR",
+			"name": "Razor Tutorial",
+			"description": "Razor Test Transaction",
+			"image": "https://previews.123rf.com/images/subhanbaghirov/subhanbaghirov1605/subhanbaghirov160500087/56875269-vector-light-bulb-icon-with-concept-of-idea-brainstorming-idea-illustration-.jpg",
+			"order_id": JSON.parse(orderId),
+			"handler": function (response){
+				document.getElementById('razorpay_payment_id').value= response.razorpay_payment_id;
+				document.getElementById('razorpay_order_id').value= response.razorpay_order_id;
+				document.getElementById('razorpay_signature').value= response.razorpay_signature;
+				document.getElementById("paymentVerifyForm").submit();
+			},
+			"modal": {
+				ondismiss: function() {
+					alert(`Payment Failed`)
+				}
+			},
+			"theme": {
+				"color": "#22527b"
+			}
+		};
+		const razorpay = new Razorpay(options);
+		razorpay.open();
+		event.preventDefault();
+	}
+</script>

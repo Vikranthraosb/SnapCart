@@ -1,0 +1,68 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>client</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+    <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="./track.js"></script>
+
+        <style>
+            body {
+                margin: 0;
+            }
+            .container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: auto;
+                width: 100%;
+                padding: 5px;
+                flex-direction: column;
+            }
+            #map {
+                border-radius: 10px;
+                border: 2px solid rgb(36, 116, 147) dotted;
+                filter: drop-shadow(0 0 0.55rem rgba(0, 0, 0, 0.333));
+            }
+            img {
+                height: 40px;
+                width: auto;
+            }
+            .heading {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 20px;
+                margin-top: 10px;
+            }
+            .heading img {
+                padding-right: 10px;
+            }
+            .heading h1 {
+                padding-right: 10px;
+                color: rgb(37, 115, 146);
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <img src="/img/delivery_logo-removebg-preview.png" alt="">
+            <h1>Tracking your order!</h1>
+        </div>
+        <div id="map" style="height: 500px; width: 800px;"></div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>

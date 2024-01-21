@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Salsa&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 1em 0 0 0;
+            padding: 0;
+            background: linear-gradient(to right,white,#75fc0d5e);
+
+            color: #ffffff;
+        }
+
+        .containerbody {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            /* max-width: 1200px; */
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image {
+            width: 40%;
+            /* max-height: 50vh; */
+            /* overflow: hidden; */
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin: 1em;
+            height: 80vh;
+        }
+
+        .image_details {
+            width: 100%;
+            height: 80vh;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+
+        .details {
+            /* background-color: #D4E7C5; */
+
+            border-radius: 10px;
+            width: 100%;
+            height: 80vh;
+            margin: 1em;
+            color: black;
+            font-family: 'Salsa', cursive;
+            border-left: black solid;
+        }
+
+        .product-title,
+        .author,
+        .description,
+        .price,
+        .discount,
+        .contact {
+            padding-left: 20px;
+            /* Adjust the value as needed */
+        }
+        .payment{
+            text-decoration: none;
+        }
+        @import url(https://fonts.googleapis.com/css?family=Montserrat);
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+/* body {
+  background-color: #32323c;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+button {
+  position: relative;
+  border: none;
+  font-size: 18px;
+  transition: color 0.5s, transform 0.2s, background-color 0.2s;
+  outline: none;
+  border-radius: 6px;
+  margin: 0 10px;
+  padding: 23px 33px;
+  border: 3px solid transparent;
+}
+button:active {
+  transform: translateY(3px);
+}
+button::after, button::before {
+  border-radius: 3px;
+}
+
+.shrink-border {
+  background-color: transparent;
+  color: #0dff00;
+}
+.shrink-border:hover {
+  background-color: transparent;
+  box-shadow: none;
+  color: #07a731;
+}
+.shrink-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #1b1b20;
+  border-radius: 20px;
+  transition: opacity 0.3s, border 0.3s;
+}
+.shrink-border:hover::before {
+  opacity: 0;
+}
+.shrink-border::after {
+  content: "";
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: 3px solid #51ff00;
+  opacity: 0;
+  z-index: -1;
+  transform: scaleX(1.1) scaleY(1.3);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.shrink-border:hover::after {
+  opacity: 1;
+  transform: scaleX(1) scaleY(1);
+}
+
+.material-bubble {
+  background-color: transparent;
+  color: #3a3aa6;
+  border: none;
+  overflow: hidden;
+  box-shadow: none;
+}
+.material-bubble:hover {
+  color: #b33d3d;
+}
+.material-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #1b1b20;
+  transition: opacity 0.3s, border 0.3s;
+}
+.material-bubble:hover::before {
+  opacity: 0;
+}
+.material-bubble::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: #494958;
+  border-color: transparent;
+  border-radius: 50%;
+  transform: translate(-10px, -70px) scale(0.1);
+  opacity: 0;
+  z-index: -1;
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+.material-bubble:hover::after {
+  opacity: 1;
+  transform-origin: 100px 100px;
+  transform: scale(1) translate(-10px, -70px);
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="containerbody">
+        <div class="image">
+            <center><img class="image_details" src="/images/uploads/<%= post.image %>" alt="Product Image"></center>
+        </div>
+        <div class="details">
+            <h1 class="product-title">
+                <%= post.title %>
+            </h1>
+            <h4 class="author">By : <%= post.user.username %>
+            </h4>
+            <h4 class="contact">Contact the seller : <%= post.user.mobile %>
+            </h4>
+            <hr>
+            <p style="margin: 0;" class="description">Description : <%= post.Description %>
+            </p>
+
+
+            <h5 style="margin: 0;" class="discount"><%= post.discount %> discount on <span style="font-size: 1.5em;">Rs/- <%= post.price %></span></h5>
+            <a class="payment" style="float: left;padding-left: 20px;" href="http://localhost:3000" target="_blank">Buy now</a>
+            <div class="containerbutton">
+                <div>
+                    <!-- <button class="shrink-border"><a class="payment" style="float: left;" href="http://localhost:3000" target="_blank">Buy now</a></button> -->
+                    <!-- <button class="material-bubble">Xenization</button> -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Add more details as needed -->
+
+    </div>
+
+</body>
+
+</html>

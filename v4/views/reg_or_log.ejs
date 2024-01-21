@@ -1,0 +1,278 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="container1">
+            <div class="sign-logo">
+                <p><i class="fa-solid fa-user"></i></p>
+                <h1>Get started</h1>
+            </div>
+            <div class="container2">
+                <div class="one">
+                    <div class="comp-logo">
+                        <img src="../images/register.png" alt="">
+                    </div>
+                    <h2>Register</h2>
+                    <p>Start your hiring process with us! for seemless data driven hiring</p>
+                    <button><a href="/register" style="text-decoration: none;">Suit up!</a></button>
+                </div>
+                <div class="two">
+                    <div class="find-job-logo">
+                        <img src="../images/login.png" alt="">
+                    </div>
+                    <h2>Login</h2>
+                    <p>Start your hiring process with us! for seemless data driven hiring</p>
+                    <button><a href="/login" style="text-decoration: none;">Dive in</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<style>
+    @import url('https://fonts.gogleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    html {
+        width: 100%;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    :root {
+        --border: 2px solid black;
+        --primary: #ce0000;
+    }
+
+    button a {
+        color: black;
+    }
+
+    button:hover {
+        color: white;
+    }
+
+    .one:hover {
+        button a {
+            color: rgb(255, 255, 255);
+        }
+
+    }
+
+    .two:hover {
+        button a {
+            color: rgb(255, 255, 255);
+        }
+
+    }
+
+    .wrap {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.515);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1em;
+    }
+
+
+
+    .container1 {
+        height: 35rem;
+        width: 53rem;
+        background-color: rgb(255, 255, 255);
+        border-radius: 15px;
+        padding: 0px 40px 15px 40px;
+        max-width: 100%;
+        /* border: var(--border); */
+        /* display: flex;
+    justify-content: center;
+    align-items: center; */
+        /* border: var(--border); */
+        /* filter: drop-shadow(0px 0px 100px black); */
+    }
+
+    .container2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        /* border: var(--border); */
+    }
+
+    /* .three-div{
+    height:25rem;
+    width:40rem ;
+    border: var(--border);
+    border-radius: 15px;
+} */
+
+    .sign-logo {
+        display: flex;
+        justify-content: center;
+        padding-top: 1rem;
+        margin-bottom: 2rem;
+        /* filter: drop-shadow(0px 0px 2px black); */
+        /* border: var(--border); */
+    }
+
+    .sign-logo p {
+        font-size: 2rem;
+        color: var(--primary)
+    }
+
+    .sign-logo h1 {
+        margin-top: 1.9rem;
+        margin-left: 1rem;
+        color: black;
+    }
+
+    .one {
+        height: 22rem;
+        width: 20rem;
+        /* background-color: aquamarine; */
+        border-radius: 6.5px;
+        border: 2px solid rgb(206, 206, 206);
+        transition: all 0.5s ease 0s;
+    }
+
+    .one h2 {
+        text-align: center;
+    }
+
+    .two {
+        height: 22rem;
+        width: 20rem;
+        /* background-color: blueviolet; */
+        border-radius: 6.5px;
+        border: 2px solid rgb(206, 206, 206);
+        transition: all 0.5s ease 0s;
+    }
+
+    .two h2 {
+        text-align: center;
+    }
+
+    .comp-logo {
+        /* width: 6rem;
+    height: 6rem;
+    border-radius: 100%;
+    background-color: rgb(93, 93, 93); */
+        display: block;
+        position: relative;
+        left: 7rem;
+        top: 1.5rem;
+    }
+
+    .comp-logo img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .find-job-logo {
+        display: block;
+        position: relative;
+        left: 7rem;
+        top: 1.5rem;
+    }
+
+    .find-job-logo img {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .one h2 {
+        margin-top: 3rem;
+    }
+
+    .one p {
+        text-align: center;
+        padding: 1rem 1rem 1rem 1rem;
+    }
+
+    .two h2 {
+        margin-top: 3rem;
+    }
+
+    .two p {
+        text-align: center;
+        padding: 1rem 1rem 1rem 1rem;
+    }
+
+    button {
+        position: relative;
+        left: 7rem;
+        width: 7rem;
+        height: 3rem;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 6px;
+        border-color: #ff6f00;
+        background: rgb(255, 255, 255);
+        transition: all 0s ease 0s;
+    }
+
+    .one:hover {
+
+        border-color: #ff6f00;
+        transform: translateY(-12px);
+    }
+
+    .one:hover {
+        button {
+            color: aliceblue;
+            background-image: linear-gradient(to right, #ce5900, #ce0000);
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(0px 0px 4px black);
+        }
+    }
+
+
+    .two:hover {
+        button {
+            color: aliceblue;
+            background-image: linear-gradient(to right, #ce5900, #ce0000);
+            border: none;
+            cursor: pointer;
+            filter: drop-shadow(2px 0px 4px black);
+        }
+    }
+
+    .two:hover {
+
+        border-color: #ff6f00;
+        transform: translateY(-12px);
+
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    .close {
+        font-size: 1.5rem;
+        color: #ce0000;
+        display: inline;
+        /* flex-direction: row-reverse; */
+        position: relative;
+        bottom: 7rem;
+
+    }
+</style>

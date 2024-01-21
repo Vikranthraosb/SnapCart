@@ -1,0 +1,32 @@
+<!-- <div class="d-flex justify-content-center">
+	<form method="POST" action="/payment/order">
+		<div class="mb-3">
+		  <label for="amountInput" class="form-label">Enter Amount</label>
+		  <input name="amount" type="number" min="1" class="form-control form-control-lg" id="amountInput" aria-describedby="amountHelp" required>
+		  <div id="amountHelp" class="form-text">Bhaiyon aur Beheno, ek rupaiya, sau rupaiya. Kuch bhi chalega.</div>
+		</div>
+
+		<div class="d-grid">
+			<button type="submit" class="btn btn-primary" id="getOrderIdBtn">Submit</button>
+		</div>
+	</form>
+</div> -->
+
+<!-- order.ejs -->
+<!-- order.ejs -->
+
+<div class="d-flex justify-content-center">
+    <form method="POST" action="/payment/order">
+        <div class="mb-3">
+            <label for="amountInput" class="form-label">Select Amount</label>
+
+            <!-- Add three buttons with different amounts -->
+            <div class="d-grid">
+                <button type="submit" name="amount" value="10" class="btn btn-primary" id="getOrderIdBtn">pay ₹10</button>
+                <button type="submit" name="amount" value="50" class="btn btn-primary" id="getOrderIdBtn">pay ₹50</button>
+                <button type="submit" name="amount" value="100" class="btn btn-primary" id="getOrderIdBtn">pay ₹100</button>
+            </div>
+        </div>
+    </form>
+</div>
+
