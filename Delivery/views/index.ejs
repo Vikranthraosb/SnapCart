@@ -6,11 +6,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="../stylesheets/index.css">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
     <title>version_3
     </title>
 </head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.chatbot-toggler {
+  position: fixed;
+  bottom: 30px;
+  right: 35px;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  z-index: 100;
+  justify-content: center;
+  border-radius: 50%;
+  background: #724ae8;
+  transition: all 0.2s ease;
+}
+body.show-chatbot .chatbot-toggler {
+  transform: rotate(90deg);
+}
+.chatbot-toggler span {
+  color: #fff;
+  position: absolute;
+}
+.chatbot-toggler span:last-child,
+body.show-chatbot .chatbot-toggler span:first-child  {
+  opacity: 0;
+}
+body.show-chatbot .chatbot-toggler span:last-child {
+  opacity: 1;
+}
+.chatbot {
+    position: fixed;
+    right: 35px;
+    bottom: 90px;
+    height: 70vh;
+    width: 330px;
+    background: #4CAF50; /* Greenish theme */
+    border-radius: 15px;
+    overflow: hidden;
+    opacity: 0;
+    z-index: 1000;
+    pointer-events: none;
+    transform: scale(0.5);
+    transform-origin: bottom right;
+    box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.2), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s ease;
+  }
+body.show-chatbot .chatbot {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
 
+.chatbot header {
+    padding: 16px 0;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    background: #4CAF50; /* Greenish theme */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+.chatbot header span {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  display: none;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+header h2 {
+  font-size: 1.4rem;
+}
+.chatbot .chatbox {
+  overflow-y: auto;
+  height: 510px;
+  padding: 30px 20px 100px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+  width: 6px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+  background: #fff;
+  border-radius: 25px;
+}
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 25px;
+}
+.chatbox .chat {
+  display: flex;
+  list-style: none;
+}
+.chatbox .outgoing {
+  margin: 20px 0;
+  justify-content: flex-end;
+}
+.chatbox .incoming span {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    cursor: default;
+    text-align: center;
+    line-height: 32px;
+    align-self: flex-end;
+    background: #4CAF50; /* Greenish theme */
+    border-radius: 4px;
+    margin: 0 10px 7px 0;
+  }
+.chatbox .chat p {
+  white-space: pre-wrap;
+  padding: 12px 16px;
+  border-radius: 10px 10px 0 10px;
+  max-width: 75%;
+  color: #fff;
+  font-size: 0.95rem;
+  background: #724ae8;
+}
+.chatbox .incoming p {
+  border-radius: 10px 10px 10px 0;
+}
+.chatbox .chat p.error {
+  color: #721c24;
+  background: #f8d7da;
+}
+.chatbox .incoming p {
+  color: #000;
+  background: #f2f2f2;
+}
+.chatbot .chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  padding: 3px 20px;
+  border-top: 1px solid #ddd;
+}
+.chat-input textarea{
+  height: 55px;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  max-height: 180px;
+  padding: 15px 15px 15px 0;
+  font-size: 0.95rem;
+}
+#span-btn{
+  display: flex;
+  align-self: flex-end;
+  color: #724ae8;
+  cursor: pointer;
+  height: 55px;
+  display: flex;
+  position: absolute;
+  z-index: 999;
+  align-items: center;
+  border: 2px solid purple;
+  /* visibility: hidden; */
+  font-size: 1.45rem;
+}
+.chat-input textarea:valid ~ span {
+  visibility: visible;
+}
+.chat-input{
+  padding: 2vh;
+
+}
+.chatbox .chat p,
+  .chatbox .incoming p {
+    white-space: pre-wrap;
+    padding: 12px 16px;
+    border-radius: 10px 10px 0 10px;
+    max-width: 75%;
+    font-size: 0.95rem;
+  }
+  .chat-input textarea {
+  height: 55px;
+  width: calc(100% - 50px); /* Adjusted width to leave space for the button */
+  border: none;
+  outline: none;
+  resize: none;
+  max-height: 180px;
+  padding: 15px;
+  font-size: 0.95rem;
+  border-radius: 5px;
+}
+
+#span-btn {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  height: 55px;
+  padding: 0 15px;
+  background: #4CAF50; /* Greenish theme */
+  border: 2px solid #4CAF50; /* Greenish theme */
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+
+.chat-input textarea:valid ~ #span-btn {
+  visibility: visible;
+}
+
+.chat-input {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+@media (max-width: 490px) {
+  .chatbot-toggler {
+    right: 20px;
+    bottom: 20px;
+  }
+  .chatbot {
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    border-radius: 0;
+    width: 100%;
+  }
+  .chatbot .chatbox {
+    height: 90%;
+    padding: 25px 15px 100px;
+  }
+  .chatbot .chat-input {
+    padding: 5px 15px;
+  }
+  .chatbot header span {
+    display: block;
+  }
+}
+
+</style>
 <body>
     <header class="header" id="header">
         <nav class="nav container">
@@ -132,9 +388,7 @@
         </div>
     </section>
 
-    <!--=============== APP ===============-->
-
-    <!--=============== CONTACT US ===============-->
+   
     <section class="contact section container" id="contact">
         <div class="contact__container grid">
             <div class="contact__content">
@@ -157,42 +411,27 @@
     </section>
     </main>
 
-    <!--=============== FOOTER ===============-->
+ <!-- chatbot -->
+ <button class="chatbot-toggler">
+    <span class="material-symbols-rounded"><i class="ri-chat-1-fill"></i></span>
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  <div class="chatbot">
+    <header>
+      <p>Hi there 👋<br>How can I help you today?</p>
+      <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+   
+    <div id="chatbox"></div>
+<div>
+<input type="text" id="userInput" placeholder="Type your message...">
+<button id="sendButton">Send</button>
+</div>
+  </div>
+
+  <!-- chatbotend -->
     <footer class="footer section">
-        <!-- <div class="footer__container container grid">
-            <div class="footer__content">
-                <a href="#" class="footer__logo">Delivery</a>
-                <p class="footer__description">Order Products Faster <br> Easier</p>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Our Services</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Pricing </a></li>
-                    <li><a href="#" class="footer__link">Discounts</a></li>
-                    <li><a href="#" class="footer__link">Report a bug</a></li>
-                    <li><a href="#" class="footer__link">Terms of Service</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Our Company</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Blog</a></li>
-                    <li><a href="#" class="footer__link">Our mision</a></li>
-                    <li><a href="#" class="footer__link">Get in touch</a></li>
-                </ul>
-            </div>
-
-            <div class="footer__content">
-                <h3 class="footer__title">Community</h3>
-                <ul class="footer__links">
-                    <li><a href="#" class="footer__link">Support</a></li>
-                    <li><a href="#" class="footer__link">Questions</a></li>
-                    <li><a href="#" class="footer__link">Customer help</a></li>
-                </ul>
-            </div>
-        </div> -->
+        
         <p style="text-align: center;font-weight: bold; margin-top: 20px;">&copy; 2024 Delivery App. All rights
             reserved.</p>
 
@@ -206,7 +445,6 @@
     </a>
 
     <script>
-        /*=============== SHOW MENU ===============*/
             const showMenu = (toggleId, navId) => {
                 const toggle = document.getElementById(toggleId),
                     nav = document.getElementById(navId)
@@ -231,7 +469,6 @@
             }
             navLink.forEach(n => n.addEventListener('click', linkAction))
 
-            /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
             const sections = document.querySelectorAll('section[id]')
 
             function scrollActive() {
@@ -296,6 +533,81 @@
                 localStorage.setItem('selected-theme', getCurrentTheme())
                 localStorage.setItem('selected-icon', getCurrentIcon())
             })
+
+            // chatbot
+            var flag=1;
+const toggle = document.querySelector(".chatbot-toggler");
+const chatbot = document.querySelector(".chatbot");
+
+toggle.addEventListener("click", function () {
+  document.body.classList.toggle("show-chatbot");
+});
+const chatbox = document.getElementById("chatbox");
+    const userInput = document.getElementById("userInput");
+    const sendButton = document.getElementById("sendButton");
+
+    function appendMessage(sender, message) {
+      chatbox.innerHTML += `<strong>${sender}:</strong> ${message}<br>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    function botResponse(query) {
+      const lowerQuery = query.toLowerCase();
+
+      if (lowerQuery.includes("hello") || lowerQuery.includes("hi")) {
+        return "Hello there! How can I assist you today?";
+      } else if (lowerQuery.includes("how are you")) {
+        return "I'm just a bot, but thanks for asking!";
+      } else if (lowerQuery.includes("information")) {
+        return "Sure, what information are you looking for?";
+      } else if (lowerQuery.includes("events")) {
+        return "Check Out the Event Section of Website!";
+      }else if (lowerQuery.includes("contact")) {
+        return "You can contact us at 9110230197 or mail us: s.ravichandran6102003@gmail.com";
+      } else if (lowerQuery.includes("bye")) {
+        return "Goodbye! Have a great day!";
+      } else if (lowerQuery.includes("registration")|| lowerQuery.includes("register")) {
+        return "Go to the Registration Section and provide your details. An email will be sent if your registration is confirmed!";
+      } else if (lowerQuery.includes("update")) {
+        return "If you need to update your registration information, please contact us at 9110230197 or email us at s.ravichandran6102003@gmail.com";
+      }else if (lowerQuery.includes("deadline")) {
+        return "Yes, the registration deadline is available in the Events Section. Make sure to register before the deadline.";
+      }else if (lowerQuery.includes("fee")||lowerQuery.includes("[payment")) {
+        return "Yes, there might be a registration fee for some events. Check the Events Section for details.If so scan the QR code pay and share the payment details by replying to the mail we had sent!";
+      }else if (lowerQuery.includes("cancellation")) {
+        return "Yes, there might be a registration fee for some events. Check the Events Section for details.";
+      }else if (lowerQuery.includes("thank you")) {
+        return "You're welcome! It was my pleasure to assist you.!";
+      }else if (lowerQuery.includes("team")) {
+        return "Mail our team at s.ravichandran6102003@gmail.com to form teams of your choice text the complete details of your team members!";
+      }
+      else if (lowerQuery.includes("bye")) {
+        return "Goodbye! Have a great day!";
+      } else {
+        return "I'm sorry, I don't understand that. Can you please rephrase? or Contact the team at  9110230197 / mail us: s.ravichandran6102003@gmail.com";
+      }
+    }
+
+    function processUserInput() {
+      const message = userInput.value.trim();
+      if (message !== "") {
+        appendMessage("You", message);
+        userInput.value = "";
+
+        const botReply = botResponse(message);
+        setTimeout(() => appendMessage("Chatbot", botReply), 500);
+      }
+    }
+
+    sendButton.addEventListener("click", processUserInput);
+
+    userInput.addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        processUserInput();
+      }
+    });
+
+
     </script>
 </body>
 
