@@ -24,8 +24,11 @@ FEEL FREE TO CONTRIBUTE TO THIS PROJECT.
  The current contributors are:
 
 --VIKRANTH RAO SB
+
 --CHANDRAKANTH HP
+
 --SUMANTH H
+
 --PRADEEP NINGANURI
 
 # How to Contribute?
